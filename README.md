@@ -46,6 +46,7 @@ copier copy gh:quickplates/next .
 - embracing [`TypeScript`](https://www.typescriptlang.org) to the fullest
 - state management with [`Zustand`](https://docs.pmnd.rs/zustand)
 - clean UI with [`Mantine`](https://mantine.dev)
+- i18n with [`Lingui`](https://lingui.dev)
 
 ## 💻 Development
 
