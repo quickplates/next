@@ -16,7 +16,7 @@ export default tseslint.config(
   eslint.configs.recommended,
 
   // Use recommended type-checked typescript-eslint rules
-  tseslint.configs.strictTypeChecked,
+  tseslint.configs.recommendedTypeChecked,
 
   // Use stylistic type-checked typescript-eslint rules
   tseslint.configs.stylisticTypeChecked,
@@ -27,7 +27,7 @@ export default tseslint.config(
   // Make React rules compatible with JSX
   reacteslint.configs.flat["jsx-runtime"],
 
-  // Use Next.js recommended rules
+  // Use recommended Next.js rules
   ...fixupConfigRules(compat.extends("plugin:@next/next/recommended")),
 
   // Use recommended Lingui rules
@@ -82,11 +82,24 @@ export default tseslint.config(
         },
       ],
 
-      // Allow non-null assertions
-      "@typescript-eslint/no-non-null-assertion": "off",
+      // Allow nullish coalescing operator for primitive types
+      "@typescript-eslint/prefer-nullish-coalescing": [
+        "error",
+        {
+          ignorePrimitives: true,
+        },
+      ],
 
       // Allow async functions without await
       "@typescript-eslint/require-await": "off",
+
+      // Skip checking whether static methods are bound
+      "@typescript-eslint/unbound-method": [
+        "error",
+        {
+          ignoreStatic: true,
+        },
+      ],
 
       // Allow anonymous default exports
       "import/no-anonymous-default-export": "off",
@@ -96,6 +109,9 @@ export default tseslint.config(
 
       // Allow empty destructuring patterns
       "no-empty-pattern": "off",
+
+      // Don't sort module members
+      "perfectionist/sort-modules": "off",
     },
   },
 
