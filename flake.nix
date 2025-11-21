@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-24.11";
+      url = "github:NixOS/nixpkgs/nixos-25.05";
     };
 
     flake-parts = {
@@ -35,12 +35,12 @@
         system,
         ...
       }: let
-        python = pkgs.python312.withPackages (ps: [ps.pytest ps.plumbum]);
         nil = pkgs.nil;
         task = pkgs.go-task;
         coreutils = pkgs.coreutils;
         trunk = pkgs.trunk-io;
-        copier = pkgs.copier;
+        copier = pkgs.python313.withPackages (ps: [ps.copier]);
+        pytest = pkgs.python313.withPackages (ps: [ps.copier ps.pytest ps.plumbum]);
       in {
         # Override pkgs argument
         _module.args.pkgs = import inputs.nixpkgs {
@@ -64,12 +64,12 @@
             name = "dev";
 
             packages = [
-              python
               nil
               task
               coreutils
               trunk
               copier
+              pytest
             ];
 
             shellHook = ''
@@ -109,10 +109,10 @@
             name = "test";
 
             packages = [
-              python
               task
               coreutils
               copier
+              pytest
             ];
 
             shellHook = ''

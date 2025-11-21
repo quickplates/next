@@ -44,9 +44,14 @@ copier copy gh:quickplates/next .
 - automatic releases on [`GitHub Container Registry`](https://ghcr.io)
 - package management with [`npm`](https://www.npmjs.com)
 - embracing [`TypeScript`](https://www.typescriptlang.org) to the fullest
-- state management with [`Zustand`](https://docs.pmnd.rs/zustand)
+- server-side configuration with [`zod-config`](https://github.com/alexmarqs/zod-config)
+- backend for frontend pattern with [`oRPC`](https://orpc.unnoq.com)
+- state management with [`Valtio`](https://valtio.dev)
 - clean UI with [`Mantine`](https://mantine.dev)
 - i18n with [`Lingui`](https://lingui.dev)
+- client-side data fetching with [`TanStack Query`](https://tanstack.com/query)
+- dynamic metadata management with [`Unhead`](https://unhead.unjs.io)
+- client bundle analysis with [`Rsdoctor`](https://rsdoctor.rs)
 
 ## 💻 Development
 
