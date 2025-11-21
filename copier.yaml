@@ -34,7 +34,7 @@ port:
 
 keyprefix:
   type: str
-  help: The prefix for various keys used in the app (e.g. for storage)
+  help: The prefix for various keys used in the app
   default: "{{ appname | lower | replace('_', '-') }}"
 
 docs:

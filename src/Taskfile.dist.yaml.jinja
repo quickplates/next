@@ -1,4 +1,4 @@
-version: "3.39"
+version: "3.43"
 
 tasks:
   template:
@@ -31,8 +31,12 @@ tasks:
     cmds:
       {%- if docs %}
       - task: install-docs-internal
+        vars:
+          CLI_ARGS: ""
       {%- endif %}
       - task: install-internal
+        vars:
+          CLI_ARGS: ""
       - >
         trunk
         fmt
@@ -42,28 +46,17 @@ tasks:
     cmds:
       {%- if docs %}
       - task: install-docs-internal
+        vars:
+          CLI_ARGS: ""
       {%- endif %}
       - task: install-internal
+        vars:
+          CLI_ARGS: ""
       - >
         trunk
         check
         {{ '{{ .CLI_ARGS }}' }}
   {%- if docs %}
-  remove-docs-node-modules:
-    desc: Clean docs node_modules
-    dir: docs/
-    cmds:
-      - >
-        rm
-        --recursive
-        --force
-        node_modules/
-    status:
-      - >
-        test
-        '!'
-        -d
-        node_modules/
   install-docs:
     desc: Install docs dependencies
     dir: docs/
@@ -95,26 +88,12 @@ tasks:
             --quiet
             --no-progress
   update-docs:
-    desc: Update docs dependencies
+    desc: Update docs package-lock.json
     dir: docs/
     cmds:
-      - task: install-docs-internal
       - >
         npm
-        run
-        --
         update
-        {{ '{{ .CLI_ARGS }}' }}
-  test-docs:
-    desc: Test docs
-    dir: docs/
-    cmds:
-      - task: install-docs-internal
-      - >
-        npm
-        run
-        --
-        test
         {{ '{{ .CLI_ARGS }}' }}
   docs:
     desc: Run docusaurus
@@ -122,27 +101,15 @@ tasks:
     interactive: true
     cmds:
       - task: install-docs-internal
+        vars:
+          CLI_ARGS: ""
       - >
         npm
-        run
+        exec
         --
-        docs
+        docusaurus
         {{ '{{ .CLI_ARGS | default "start --host 0.0.0.0" }}' }}
   {%- endif %}
-  remove-node-modules:
-    desc: Clean node_modules
-    cmds:
-      - >
-        rm
-        --recursive
-        --force
-        node_modules/
-    status:
-      - >
-        test
-        '!'
-        -d
-        node_modules/
   install:
     desc: Install dependencies
     sources:
@@ -172,13 +139,10 @@ tasks:
             --quiet
             --no-progress
   update:
-    desc: Update dependencies
+    desc: Update package-lock.json
     cmds:
-      - task: install-internal
       - >
         npm
-        run
-        --
         update
         {{ '{{ .CLI_ARGS }}' }}
   clean:
@@ -188,6 +152,7 @@ tasks:
         rm
         --recursive
         --force
+        {{ '{{ .CLI_ARGS }}' }}
         build/
     status:
       - >
@@ -195,16 +160,15 @@ tasks:
         '!'
         -d
         build/
-  build-internal:
+  build:
     desc: Build outputs
-    internal: true
     sources:
       - public/**/*
       - src/**/*
       - flake.lock
       - "*.nix"
       - lingui.config.ts
-      - next.config.mjs
+      - next.config.ts
       - package-lock.json
       - package.json
       - postcss.config.mjs
@@ -214,32 +178,45 @@ tasks:
     generates:
       - build/**/*
     cmds:
+      - task: install-internal
+        vars:
+          CLI_ARGS: ""
       - >
         npm
-        run
+        exec
         --
+        next
         build
         {{ '{{ .CLI_ARGS }}' }}
-  build:
-    desc: Build outputs
+  build-internal:
+    desc: Build outputs quietly
+    internal: true
     cmds:
-      - task: install-internal
-      - task: build-internal
+      - task: build
+        vars:
+          CLI_ARGS: ""
   locales:
     desc: Extract locales
     cmds:
       - task: install-internal
+        vars:
+          CLI_ARGS: ""
       - >
         npm
-        run
+        exec
         --
-        locales
+        lingui
+        extract
+        --clean
+        --overwrite
         {{ '{{ .CLI_ARGS }}' }}
   dev:
     desc: Run in development mode
     interactive: true
     cmds:
       - task: install-internal
+        vars:
+          CLI_ARGS: ""
       - >
         npm
         run
@@ -250,7 +227,10 @@ tasks:
     desc: Run the app
     interactive: true
     cmds:
-      - task: build
+      - task: install-internal
+        vars:
+          CLI_ARGS: ""
+      - task: build-internal
         vars:
           CLI_ARGS: ""
       - >

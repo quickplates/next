@@ -1,4 +1,4 @@
-version: "3.39"
+version: "3.43"
 
 tasks:
   template:
@@ -41,7 +41,7 @@ tasks:
         check
         {{ .CLI_ARGS }}
   clean:
-    desc: Clean build files
+    desc: Clean build outputs
     cmds:
       - >
         rm
@@ -130,6 +130,7 @@ tasks:
         git
         add
         --all
+        {{ .CLI_ARGS }}
     status:
       - >
         test
@@ -149,7 +150,11 @@ tasks:
             'description=Example app'
             {{ .CLI_ARGS }}
       - task: init-build
+        vars:
+          CLI_ARGS: ""
       - task: add-build-changes
+        vars:
+          CLI_ARGS: ""
   test:
     desc: Test the project
     cmds:
