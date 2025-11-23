@@ -35,6 +35,7 @@
         system,
         ...
       }: let
+        nix = pkgs.nix;
         nil = pkgs.nil;
         task = pkgs.go-task;
         coreutils = pkgs.coreutils;
@@ -64,6 +65,7 @@
             name = "dev";
 
             packages = [
+              nix
               nil
               task
               coreutils
@@ -81,6 +83,7 @@
             name = "template";
 
             packages = [
+              nix
               task
               coreutils
               copier
@@ -95,6 +98,7 @@
             name = "lint";
 
             packages = [
+              nix
               task
               coreutils
               trunk
@@ -109,6 +113,7 @@
             name = "test";
 
             packages = [
+              nix
               task
               coreutils
               copier

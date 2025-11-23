@@ -8,7 +8,7 @@ tasks:
       GIT_CONFIG_GLOBAL: ""
       GIT_CONFIG_SYSTEM: ""
     cmds:
-      - >
+      - >-
         copier
         update
         --answers-file
@@ -17,7 +17,7 @@ tasks:
   flake:
     desc: Update flake.lock
     cmds:
-      - >
+      - >-
         nix
         --accept-flake-config
         --extra-experimental-features
@@ -37,7 +37,7 @@ tasks:
       - task: install-internal
         vars:
           CLI_ARGS: ""
-      - >
+      - >-
         trunk
         fmt
         {{ '{{ .CLI_ARGS }}' }}
@@ -52,7 +52,7 @@ tasks:
       - task: install-internal
         vars:
           CLI_ARGS: ""
-      - >
+      - >-
         trunk
         check
         {{ '{{ .CLI_ARGS }}' }}
@@ -70,7 +70,7 @@ tasks:
     generates:
       - node_modules/**/*
     cmds:
-      - >
+      - >-
         npm
         install
         {{ '{{ .CLI_ARGS }}' }}
@@ -81,7 +81,7 @@ tasks:
     cmds:
       - task: install-docs
         vars:
-          CLI_ARGS: >
+          CLI_ARGS: >-
             --prefer-offline
             --no-audit
             --no-fund
@@ -91,7 +91,7 @@ tasks:
     desc: Update docs package-lock.json
     dir: docs/
     cmds:
-      - >
+      - >-
         npm
         update
         {{ '{{ .CLI_ARGS }}' }}
@@ -103,7 +103,7 @@ tasks:
       - task: install-docs-internal
         vars:
           CLI_ARGS: ""
-      - >
+      - >-
         npm
         exec
         --
@@ -122,7 +122,7 @@ tasks:
     generates:
       - node_modules/**/*
     cmds:
-      - >
+      - >-
         npm
         install
         {{ '{{ .CLI_ARGS }}' }}
@@ -132,7 +132,7 @@ tasks:
     cmds:
       - task: install
         vars:
-          CLI_ARGS: >
+          CLI_ARGS: >-
             --prefer-offline
             --no-audit
             --no-fund
@@ -141,21 +141,21 @@ tasks:
   update:
     desc: Update package-lock.json
     cmds:
-      - >
+      - >-
         npm
         update
         {{ '{{ .CLI_ARGS }}' }}
   clean:
     desc: Clean build outputs
     cmds:
-      - >
+      - >-
         rm
         --recursive
         --force
         {{ '{{ .CLI_ARGS }}' }}
         build/
     status:
-      - >
+      - >-
         test
         '!'
         -d
@@ -181,7 +181,7 @@ tasks:
       - task: install-internal
         vars:
           CLI_ARGS: ""
-      - >
+      - >-
         npm
         exec
         --
@@ -201,7 +201,7 @@ tasks:
       - task: install-internal
         vars:
           CLI_ARGS: ""
-      - >
+      - >-
         npm
         exec
         --
@@ -228,7 +228,7 @@ tasks:
       - task: install-internal
         vars:
           CLI_ARGS: ""
-      - >
+      - >-
         npm
         exec
         --
@@ -244,7 +244,7 @@ tasks:
       - task: install-internal
         vars:
           CLI_ARGS: ""
-      - >
+      - >-
         npm
         run
         --
@@ -260,7 +260,7 @@ tasks:
       - task: build-internal
         vars:
           CLI_ARGS: ""
-      - >
+      - >-
         npm
         run
         --
@@ -270,7 +270,7 @@ tasks:
     desc: Run in docker container
     interactive: true
     cmds:
-      - >
+      - >-
         docker
         compose
         up

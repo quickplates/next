@@ -1,3 +1,6 @@
+# Python version to target
+target-version = "py313"
+
 select = [
   # Enable all rules
   "ALL",
