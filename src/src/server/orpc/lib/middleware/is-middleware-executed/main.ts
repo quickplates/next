@@ -1,4 +1,4 @@
-import { isPlainObject } from "es-toolkit";
+import { isPlainObject } from "es-toolkit/predicate";
 
 export function isMiddlewareExecuted(context: unknown, name: string): boolean {
   const key = `${name}Middleware`;

@@ -31,9 +31,11 @@ export function TestWidget({}: TestWidgetInput) {
   const handleSubmit = useCallback(
     async ({ values }: TestFormSubmitInput) => {
       try {
-        await validateMutation.mutateAsync({ value: values.value });
+        const { message } = await validateMutation.mutateAsync({
+          value: values.value,
+        });
 
-        notifications.success({ message: msg({ message: "Submitted!" }) });
+        notifications.success({ message: message });
       } catch (error) {
         if (isOrpcDefinedError(error) && error.code === "BAD_REQUEST") {
           notifications.error({ message: msg({ message: "Invalid input" }) });

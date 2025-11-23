@@ -1,5 +1,5 @@
 import docusauruseslint from "@docusaurus/eslint-plugin";
-import { defineConfig } from "@eslint/config-helpers";
+import { defineConfig, globalIgnores } from "@eslint/config-helpers";
 import jseslint from "@eslint/js";
 import perfectionisteslint from "eslint-plugin-perfectionist";
 import reacteslint from "eslint-plugin-react";
@@ -8,11 +8,15 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 const files = {
+  ignored: ["build/", "node_modules/"],
   js: ["**/*.js", "**/*.cjs", "**/*.mjs", "**/*.jsx"],
   ts: ["**/*.ts", "**/*.cts", "**/*.mts", "**/*.tsx"],
 };
 
 export default defineConfig(
+  // Global ignores
+  globalIgnores(files.ignored),
+
   // JavaScript support
   {
     files: files.js,

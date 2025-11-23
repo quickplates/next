@@ -1,5 +1,5 @@
 import { I18n } from "@lingui/core";
-import { mapValues } from "es-toolkit";
+import { mapValues } from "es-toolkit/object";
 
 import type { CreateLinguiInput, CreateLinguiOutput } from "./types";
 

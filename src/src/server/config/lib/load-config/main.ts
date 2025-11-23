@@ -14,7 +14,10 @@ export async function loadConfig({}: LoadConfigInput = {}): Promise<LoadConfigOu
         nestingSeparator: constants.env.separator,
         transform: ({ key, value }) =>
           key.toLowerCase().startsWith(constants.env.prefix.toLowerCase())
-            ? { key: key.slice(constants.env.prefix.length), value }
+            ? {
+                key: key.slice(constants.env.prefix.length),
+                value: value === "" ? null : value,
+              }
             : false,
       }),
     ],
