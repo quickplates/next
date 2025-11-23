@@ -210,6 +210,33 @@ tasks:
         --clean
         --overwrite
         {{ '{{ .CLI_ARGS }}' }}
+  apis:
+    desc: Generate code for APIs
+    sources:
+      - openapi/**/*
+      - flake.lock
+      - "*.nix"
+      - openapi-ts.config.mts
+      - package-lock.json
+      - package.json
+      - Taskfile.dist.yaml
+      - "{taskfile,Taskfile}.{yaml,yml}"
+      - tsconfig.json
+    generates:
+      - src/common/apis/**/*
+    cmds:
+      - task: install-internal
+        vars:
+          CLI_ARGS: ""
+      - >
+        npm
+        exec
+        --
+        openapi-ts
+        {{ '{{ .CLI_ARGS }}' }}
+      - task: fmt
+        vars:
+          CLI_ARGS: src/common/apis
   dev:
     desc: Run in development mode
     interactive: true

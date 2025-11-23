@@ -38,9 +38,7 @@ export class StateVariable {
     if (this.variable.current !== undefined)
       throw new StateAlreadyInitializedError();
 
-    this.variable.current = proxy({
-      config: state.config,
-    });
+    this.variable.current = proxy(state);
   }
 
   private readonly variable = new GlobalVariable<State>(constants.key);

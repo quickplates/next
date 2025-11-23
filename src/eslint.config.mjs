@@ -1,4 +1,4 @@
-import { defineConfig } from "@eslint/config-helpers";
+import { defineConfig, globalIgnores } from "@eslint/config-helpers";
 import jseslint from "@eslint/js";
 import nexteslint from "@next/eslint-plugin-next";
 import tanstackqueryeslint from "@tanstack/eslint-plugin-query";
@@ -10,6 +10,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 const files = {
+  ignored: ["build/", "node_modules/", "src/common/apis/"],
   js: ["**/*.js", "**/*.cjs", "**/*.mjs", "**/*.jsx"],
   ts: ["**/*.ts", "**/*.cts", "**/*.mts", "**/*.tsx"],
   tsproject: [
@@ -27,6 +28,9 @@ const files = {
 };
 
 export default defineConfig(
+  // Global ignores
+  globalIgnores(files.ignored),
+
   // JavaScript support
   {
     files: files.js,

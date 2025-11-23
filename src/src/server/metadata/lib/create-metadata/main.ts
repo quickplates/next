@@ -1,4 +1,4 @@
-import { omitBy } from "es-toolkit";
+import { omitBy } from "es-toolkit/object";
 
 import type { CreateMetadataInput, CreateMetadataOutput } from "./types";
 

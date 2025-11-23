@@ -45,6 +45,7 @@ copier copy gh:quickplates/next .
 - package management with [`npm`](https://www.npmjs.com)
 - embracing [`TypeScript`](https://www.typescriptlang.org) to the fullest
 - server-side configuration with [`zod-config`](https://github.com/alexmarqs/zod-config)
+- code generation for APIs with [`Hey API`](https://heyapi.dev)
 - backend for frontend pattern with [`oRPC`](https://orpc.unnoq.com)
 - state management with [`Valtio`](https://valtio.dev)
 - clean UI with [`Mantine`](https://mantine.dev)
