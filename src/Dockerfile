@@ -60,7 +60,7 @@ RUN npm ci
 COPY ./ ./
 
 # Build and keep only runtime dependencies
-RUN npm exec -- next build && npm prune --production
+RUN npm exec -- next build --webpack && npm prune --production
 
 # Use ubuntu for runtime
 FROM ubuntu:24.04 AS runtime
