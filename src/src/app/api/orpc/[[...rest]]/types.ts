@@ -1,3 +1,3 @@
-export namespace Parameters {
-  export type Path = "[[...rest]]";
+export namespace Keys {
+  export type Path = "[...rest]";
 }

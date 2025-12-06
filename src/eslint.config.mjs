@@ -256,13 +256,9 @@ export default defineConfig(
 
   // Next.js rules
   {
-    extends: [{ rules: nexteslint.configs.recommended.rules }],
+    extends: [nexteslint.configs.recommended],
 
     files: [...files.js, ...files.ts],
-
-    plugins: {
-      "@next/next": nexteslint.default,
-    },
   },
 
   // Lingui rules

@@ -4,11 +4,11 @@ import { STATUS_CODES } from "http";
 import { connection } from "next/server";
 
 import type { RouteInput } from "../../../types";
-import type { Parameters } from "./types";
+import type { Keys } from "./types";
 
 import { orpcServerHandler } from "../../../../server/orpc/vars/handler";
 
-async function handle(request: NextRequest, {}: RouteInput<Parameters.Path>) {
+async function handle(request: NextRequest, {}: RouteInput<Keys.Path>) {
   await connection();
 
   const { response } = await orpcServerHandler.handle(request, {
