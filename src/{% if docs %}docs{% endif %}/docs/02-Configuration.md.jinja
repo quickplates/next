@@ -22,6 +22,11 @@ You can configure the app at runtime using various environment variables:
 - `{{ envprefix }}__DEBUG` -
   enable debug mode
   (default: `true`)
+{%- if identity %}
+- `{{ envprefix }}__IDENTITY__USERS__DEBUG__ID` -
+  identifier of the debug user
+  (default: `debug`)
+{%- endif %}
 - `{{ envprefix }}__SERVER__HOST` -
   host to run the server on
   (default: `0.0.0.0`)

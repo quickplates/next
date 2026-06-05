@@ -9,6 +9,9 @@ services:
       - "{{ envprefix }}__APIS__ICANHAZDADJOKE__PORT=${ {{- envprefix }}__APIS__ICANHAZDADJOKE__PORT:-}"
       - "{{ envprefix }}__APIS__ICANHAZDADJOKE__SCHEME=${ {{- envprefix }}__APIS__ICANHAZDADJOKE__SCHEME:-https}"
       - "{{ envprefix }}__DEBUG=${ {{- envprefix }}__DEBUG:-true}"
+      {%- if identity %}
+      - "{{ envprefix }}__IDENTITY__USERS__DEBUG__ID=${ {{- envprefix }}__IDENTITY__USERS__DEBUG__ID:-debug}"
+      {%- endif %}
       - "{{ envprefix }}__SERVER__HOST=${ {{- envprefix }}__SERVER__HOST:-0.0.0.0}"
       - "{{ envprefix }}__SERVER__PORT=${ {{- envprefix }}__SERVER__PORT:-{{ port -}} }"
     network_mode: host

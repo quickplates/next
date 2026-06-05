@@ -20,6 +20,8 @@ def data() -> dict[str, str]:
         "envprefix": "FOO",
         "port": "3000",
         "keyprefix": "foo",
+        "identity": "true",
+        "access": "true",
         "docs": "true",
         "docsurl": "https://foo.github.io/foo",
         "releases": "false",
