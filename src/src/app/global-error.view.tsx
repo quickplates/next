@@ -6,7 +6,7 @@ import { SafeErrorWidget } from "../isomorphic/core/components/generic/safe-erro
 export function GlobalErrorView({ reset }: ErrorViewInput) {
   return (
     <SafeMainLayout>
-      <SafeErrorWidget message="Something went wrong" reset={reset} />
+      <SafeErrorWidget reset={reset} />
     </SafeMainLayout>
   );
 }
