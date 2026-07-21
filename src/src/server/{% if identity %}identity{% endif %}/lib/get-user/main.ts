@@ -1,13 +1,13 @@
 import type { GetUserInput, GetUserOutput } from "./types";
 
-import { Schemas } from "./schemas";
+import { parseUserFromHeaders } from "./utils";
 
 export async function getUser({
   headers,
 }: GetUserInput): Promise<GetUserOutput> {
-  const id = await Schemas.Id.safeParseAsync(headers.get("X-User-ID"));
+  const result = await parseUserFromHeaders(headers);
 
-  const user = id.success ? { id: id.data } : null;
+  const user = result.success ? result.data : null;
 
   return { user: user };
 }
