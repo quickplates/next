@@ -6,7 +6,7 @@ import { localizePath } from "./common/routing/lib/localize-path";
 import { resolvePath } from "./common/routing/lib/resolve-path";
 import { serverGenericConstants } from "./server/generic/constants";
 import { getRequestUrl } from "./server/generic/lib/get-request-url";
-import { getLocale } from "./server/localization/lib/get-locale";
+import { resolveLocale } from "./server/localization/lib/resolve-locale";
 import { getLocalizedRoutes } from "./server/routing/lib/get-localized-routes";
 
 export async function proxy(request: NextRequest) {
@@ -17,7 +17,7 @@ export async function proxy(request: NextRequest) {
     [serverGenericConstants.headers.requestUrl]: requestUrl,
   });
 
-  const { locale } = getLocale({ headers: request.headers });
+  const { locale } = await resolveLocale();
   const { localizedRoutes } = getLocalizedRoutes();
   const { pathname, search } = request.nextUrl;
 
